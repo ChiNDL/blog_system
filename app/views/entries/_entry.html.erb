@@ -1,0 +1,21 @@
+<li id="entry-<%= entry.id %>">
+  <%= link_to gravatar_for(entry.user, size: 50), entry.user %>
+  <span class="user"><%= link_to entry.user.name, entry.user %></span>
+  <span class="content"> <%= entry.title %> </span> <br> 
+  	<%= entry.body %>
+<br>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(entry.created_at) %> ago.
+    <% if current_user?(entry.user) %>
+      <%= link_to "Delete", entry, method: :delete,
+                                       data: { confirm: "You sure?" } %>
+    <% end %>
+
+<%= pluralize(entry.comments.count, "comment") %>
+<%= link_to " Comments", entry %>
+<% if entry.comments.any? %>
+
+<% end %>
+
+</span>
+</li>
